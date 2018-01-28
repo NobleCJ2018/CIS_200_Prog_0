@@ -12,6 +12,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using static System.String;
 
 
 public class LibraryBook
@@ -24,21 +25,57 @@ public class LibraryBook
     private int _copyrightYear; // The book's year of copyright
     private string _callNumber; // The book's call number in the library
     private bool _checkedOut;   // The book's checked out status
+    public LibraryPatron _patronName;  // The books's Patron Name
+    public LibraryPatron _patronID;    // The book's Patron ID
 
     // Precondition:  theCopyrightYear >= 0
     // Postcondition: The library book has been initialized with the specified
     //                values for title, author, publisher, copyright year, and
     //                call number. The book is not checked out.
+
     public LibraryBook(String theTitle, String theAuthor, String thePublisher,
-        int theCopyrightYear, String theCallNumber)
+        int theCopyrightYear, String theCallNumber, LibraryPatron patronName, LibraryPatron patronID)
     {
         Title = theTitle;
         Author = theAuthor;
         Publisher = thePublisher;
         CopyrightYear = theCopyrightYear;
         CallNumber = theCallNumber;
+        PatronName = patronName;
+        PatronID = patronID;
+        
 
         ReturnToShelf(); // Make sure book is not checked out
+    }
+    
+    public LibraryPatron PatronName 
+    {
+        // Precondition:  None
+        // Postcondition: The Patron Name has been returned
+        get
+        {
+            return _patronName;
+        }
+
+        set
+        {
+            _patronName = value;
+        }
+    }
+    
+    public LibraryPatron PatronID
+    {
+        // Precondition:  None
+        // Postcondition: The Patron ID has been returned
+        get
+        {
+            return _patronID;
+        }
+
+        set
+        {
+            _patronID = value;
+        }
     }
 
     public string Title
@@ -54,6 +91,10 @@ public class LibraryBook
         // Postcondition: The title has been set to the specified value
         set
         {
+            if (IsNullOrWhiteSpace(value.Trim()))
+            {
+                throw new ArgumentOutOfRangeException(nameof(value), value, $"{nameof(Title)} Please Enter A Title");
+            }
             _title = value;
         }
     }
@@ -108,7 +149,7 @@ public class LibraryBook
             if (value >= 0)
                 _copyrightYear = value;
             else
-                _copyrightYear = DEFAULT_YEAR;
+               throw new ArgumentOutOfRangeException(nameof(value), value, $"{nameof(CopyrightYear)}, Please Enter A Copyright Year");
         }
     }
 
@@ -125,6 +166,10 @@ public class LibraryBook
         // Postcondition: The call number has been set to the specified value
         set
         {
+            if (IsNullOrWhiteSpace(value.Trim()))
+            {
+                throw new ArgumentOutOfRangeException(nameof(value), value, $"{nameof(CallNumber)} Please Enter A Call Number");
+            }
             _callNumber = value;
         }
     }

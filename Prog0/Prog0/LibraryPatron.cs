@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using static System.String;
 
 
 public class LibraryPatron
@@ -19,6 +20,7 @@ public class LibraryPatron
     // Precondition:  None
     // Postcondition: The patron has been initialized with the specified name
     //                and ID
+
     public LibraryPatron(string name, string id)
     {
         PatronName = name;
@@ -38,6 +40,11 @@ public class LibraryPatron
         // Postcondition: The patron's name has been set to the specified value
         set
         {
+
+            if (IsNullOrWhiteSpace(value.Trim()))
+            {
+                throw new ArgumentOutOfRangeException(nameof(value), value, $"{nameof(PatronName)} Please Enter A Patron Name");
+            }
             _patronName = value;
         }
     }
@@ -55,6 +62,10 @@ public class LibraryPatron
         // Postcondition: The patron's ID has been set to the specified value
         set
         {
+            if (IsNullOrWhiteSpace(value.Trim()))
+            {
+                throw new ArgumentOutOfRangeException(nameof(value), value, $"{nameof(PatronID)} Please Enter a Parton ID");
+            }
             _patronID = value;
         }
     }
