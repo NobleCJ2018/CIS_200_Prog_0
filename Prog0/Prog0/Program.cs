@@ -54,6 +54,8 @@ public class Program
         WriteLine("After changes");
         WriteLine("-------------");
         PrintBooks(theBooks);
+        
+
         Pause();
 
         // Return the books

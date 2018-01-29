@@ -25,10 +25,9 @@ public class LibraryBook
     private int _copyrightYear; // The book's year of copyright
     private string _callNumber; // The book's call number in the library
     private bool _checkedOut;   // The book's checked out status
-    public LibraryPatron _patronName;  // The books's Patron Name
-    public LibraryPatron _patronID;    // The book's Patron ID
-    public readonly LibraryPatron _patron;
-
+    private LibraryPatron _patronName;  // The books's Patron Name
+    private LibraryPatron _patronID;    // The book's Patron ID
+    
     // Precondition:  theCopyrightYear >= 0
     // Postcondition: The library book has been initialized with the specified
     //                values for title, author, publisher, copyright year, and
@@ -44,9 +43,7 @@ public class LibraryBook
         CallNumber = theCallNumber;
         PatronName = patronName;
         PatronID = patronID;
-        _patron = patronID;    // Ref to the readonly prop?????
-    
-
+        
         ReturnToShelf(); // Make sure book is not checked out
     }
     
@@ -176,8 +173,7 @@ public class LibraryBook
         }
     }
 
-           
-
+    
     // Precondition:  None
     // Postcondition: The book is checked out
     public void CheckOut(LibraryPatron patronID) // ?????
