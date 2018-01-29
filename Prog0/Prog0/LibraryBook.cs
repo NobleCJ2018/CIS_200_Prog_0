@@ -27,6 +27,7 @@ public class LibraryBook
     private bool _checkedOut;   // The book's checked out status
     public LibraryPatron _patronName;  // The books's Patron Name
     public LibraryPatron _patronID;    // The book's Patron ID
+    public readonly LibraryPatron _patron;
 
     // Precondition:  theCopyrightYear >= 0
     // Postcondition: The library book has been initialized with the specified
@@ -43,7 +44,8 @@ public class LibraryBook
         CallNumber = theCallNumber;
         PatronName = patronName;
         PatronID = patronID;
-        
+        _patron = patronID;    // Ref to the readonly prop?????
+    
 
         ReturnToShelf(); // Make sure book is not checked out
     }
@@ -174,10 +176,13 @@ public class LibraryBook
         }
     }
 
+           
+
     // Precondition:  None
     // Postcondition: The book is checked out
-    public void CheckOut()
+    public void CheckOut(LibraryPatron patronID) // ?????
     {
+        _patronID = patronID;
         _checkedOut = true;
     }
 
@@ -185,6 +190,7 @@ public class LibraryBook
     // Postcondition: The book is not checked out
     public void ReturnToShelf()
     {
+        _patronID = null;
         _checkedOut = false;
     }
 
@@ -193,6 +199,7 @@ public class LibraryBook
     //                otherwise false is returned
     public bool IsCheckedOut()
     {
+                
         return _checkedOut;
     }
 
@@ -202,9 +209,22 @@ public class LibraryBook
     public override string ToString()
     {
         string NL = Environment.NewLine; // Newline shortcut
+        string IsYouGotAPatron;
 
-        return $"Title: {Title}{NL}Author: {Author}{NL}Publisher: {Publisher}{NL}" +
-            $"Copyright: {CopyrightYear}{NL}Call Number: {CallNumber}{NL}" +
-            $"Checked Out: {IsCheckedOut()}";
+        if (_checkedOut)
+        {
+            IsYouGotAPatron = $"Check Out By:{NL}{PatronName}{PatronID}";
+        }
+        else
+            IsYouGotAPatron = $"Not Checked Out"
+;
+        return
+            $"Title: {Title}{NL}" +
+            $"Author: {Author}{NL}" +
+            $"Publisher: {Publisher}{NL}" +
+            $"Copyright: {CopyrightYear}{NL}" +
+            $"Call Number: {CallNumber}{NL}" +
+            $"{IsYouGotAPatron}";
+          
     }
 }

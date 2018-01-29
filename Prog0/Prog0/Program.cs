@@ -20,17 +20,23 @@ public class Program
     public static void Main(string[] args)
     {
         LibraryBook book1 = new LibraryBook("The Wright Guide to C#", "Andrew Wright", "UofL Press",
-            2010, "ZZ25 3G");  // 1st test book
+            2010, "ZZ25 3G", null, null);  // 1st test book
         LibraryBook book2 = new LibraryBook("Harriet Pooter", "IP Thief", "Stealer Books",
-            2000, "AG773 ZF"); // 2nd test book
+            2000, "AG773 ZF", null, null); // 2nd test book
         LibraryBook book3 = new LibraryBook("The Color Mauve", "Mary Smith", "Beautiful Books Ltd.",
-            1985, "JJ438 4T"); // 3rd test book
+            1985, "JJ438 4T", null, null); // 3rd test book
         LibraryBook book4 = new LibraryBook("The Guan Guide to SQL", "Jeff Guan", "UofL Press",
-            2016, "ZZ24 4F");    // 4th test book
+            2016, "ZZ24 4F", null, null);    // 4th test book
         LibraryBook book5 = new LibraryBook("The Big Book of Doughnuts", "Homer Simpson", "Doh Books",
-            2001, "AE842 7A"); // 5th test book
+            2001, "AE842 7A", null, null); // 5th test book
 
         LibraryBook[] theBooks = { book1, book2, book3, book4, book5 }; // Test array of books
+
+        LibraryPatron patron1 = new LibraryPatron("The Mittani", "GSF001"); // Patron 1
+        LibraryPatron patron2 = new LibraryPatron("Asher Elias", "GSF024"); // Patron 2
+        LibraryPatron patron3 = new LibraryPatron("Jay Amazingness", "GSF1DQ"); // Patron 3
+
+
 
         WriteLine("Original list of books");
         WriteLine("----------------------");
@@ -38,12 +44,12 @@ public class Program
         Pause();
 
         // Make changes
-        book1.CheckOut();
+        book1.CheckOut(patron1); // 1st Check Out????
         book2.Publisher = "Borrowed Books";
-        book3.CheckOut();
+        book3.CheckOut(patron2);
         book4.CallNumber = "AB123 4A";
-        book5.CheckOut();
-        book5.CopyrightYear = -1234; // Attempt invalid year
+        book5.CheckOut(patron3);
+        book5.CopyrightYear = 2018; // Attempt invalid year
 
         WriteLine("After changes");
         WriteLine("-------------");
