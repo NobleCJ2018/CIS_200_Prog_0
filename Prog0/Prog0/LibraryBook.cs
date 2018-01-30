@@ -23,9 +23,7 @@ public class LibraryBook
     private int _copyrightYear; // The book's year of copyright
     private string _callNumber; // The book's call number in the library
     private bool _checkedOut;   // The book's checked out status
-    private LibraryPatron _patronName;  // The books's Patron Name
-    private LibraryPatron _patronID;    // The book's Patron ID
-    public LibraryPatron _patron { get; }  // ????
+    public LibraryPatron PatronID { get; set; }
 
     // Precondition:  theCopyrightYear >= 0
     // Postcondition: The library book has been initialized with the specified
@@ -33,47 +31,31 @@ public class LibraryBook
     //                call number. The book is not checked out.
 
     public LibraryBook(String theTitle, String theAuthor, String thePublisher,
-        int theCopyrightYear, String theCallNumber, LibraryPatron patronName, LibraryPatron patronID)
+        int theCopyrightYear, String theCallNumber, LibraryPatron thePatron)
     {
         Title = theTitle;
         Author = theAuthor;
         Publisher = thePublisher;
         CopyrightYear = theCopyrightYear;
         CallNumber = theCallNumber;
-        PatronName = patronName;
-        PatronID = patronID;
+        PatronID = thePatron;
 
 
         ReturnToShelf(); // Make sure book is not checked out
     }
 
-    public LibraryPatron PatronName
+    public LibraryPatron Patron
     {
-        // Precondition:  None
-        // Postcondition: The Patron Name has been returned
         get
         {
-            return _patronName;
-        }
+            if (_checkedOut)
+            {
+                return PatronID;
+            }
 
-        set
-        {
-            _patronName = value;
-        }
-    }
 
-    public LibraryPatron PatronID
-    {
-        // Precondition:  None
-        // Postcondition: The Patron ID has been returned
-        get
-        {
-            return _patronID;
-        }
+            return null;
 
-        set
-        {
-            _patronID = value;
         }
     }
 
@@ -176,9 +158,9 @@ public class LibraryBook
 
     // Precondition:  None
     // Postcondition: The book is checked out
-    public void CheckOut(LibraryPatron patronID) // ?????
+    public void CheckOut(LibraryPatron a) 
     {
-        _patronID = patronID;
+        PatronID = a;
         _checkedOut = true;
     }
 
@@ -186,14 +168,14 @@ public class LibraryBook
     // Postcondition: The book is not checked out
     public void ReturnToShelf()
     {
-        _patronID = null;
+        PatronID = null;
         _checkedOut = false;
     }
 
-    // Precondition:  None
-    // Postcondition: true is returned if the book is checked out,
-    //                otherwise false is returned
-    public bool IsCheckedOut()
+        // Precondition:  None
+        // Postcondition: true is returned if the book is checked out,
+        //                otherwise false is returned
+        public bool IsCheckedOut()
     {
 
         return _checkedOut;
@@ -209,11 +191,11 @@ public class LibraryBook
 
         if (_checkedOut)
         {
-            IsYouGotAPatron = $"Check Out By:{NL}{PatronName}{PatronID}";
+            IsYouGotAPatron = $"Check Out By:{NL}{PatronID}";
         }
         else
-            IsYouGotAPatron = $"Not Checked Out"
-;
+            IsYouGotAPatron = $"Not Checked Out";
+
         return
             $"Title: {Title}{NL}" +
             $"Author: {Author}{NL}" +
