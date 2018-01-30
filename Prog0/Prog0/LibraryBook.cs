@@ -1,5 +1,9 @@
-﻿// Program 4
-
+﻿/*
+Grading_ID:****: 
+Program********: 0
+Due_Date*******: 29 JAN 2018
+Section********: CIS 200 01
+*/
 
 // File: LibraryBook.cs
 // This file creates a simple LibraryBook class capable of tracking
@@ -10,7 +14,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using static System.String;
+using static System.String; 
 
 
 public class LibraryBook
@@ -23,12 +27,17 @@ public class LibraryBook
     private int _copyrightYear; // The book's year of copyright
     private string _callNumber; // The book's call number in the library
     private bool _checkedOut;   // The book's checked out status
-    public LibraryPatron PatronID { get; set; }
+    private LibraryPatron PatronID { get; set; }  // The HAS-A Relationship, Auto Imp.
 
     // Precondition:  theCopyrightYear >= 0
     // Postcondition: The library book has been initialized with the specified
     //                values for title, author, publisher, copyright year, and
     //                call number. The book is not checked out.
+    //                When Checked out, a library patron will be related to the book object
+
+
+    // Constructor: Requires 6 parameters, the 6th being the Patron checking out the book
+    //              Patron is null as instance creation
 
     public LibraryBook(String theTitle, String theAuthor, String thePublisher,
         int theCopyrightYear, String theCallNumber, LibraryPatron thePatron)
@@ -44,8 +53,10 @@ public class LibraryBook
         ReturnToShelf(); // Make sure book is not checked out
     }
 
-    public LibraryPatron Patron
+    public LibraryPatron Patron 
     {
+        // Precondition: The book must be checked out before returning a patron
+        // Postcondition: The patron has been returned if check out true, returns null if false
         get
         {
             if (_checkedOut)
@@ -157,7 +168,7 @@ public class LibraryBook
 
 
     // Precondition:  None
-    // Postcondition: The book is checked out
+    // Postcondition: The book is checked out & A patron object is ref to this book
     public void CheckOut(LibraryPatron a) 
     {
         PatronID = a;
@@ -165,7 +176,7 @@ public class LibraryBook
     }
 
     // Precondition:  None
-    // Postcondition: The book is not checked out
+    // Postcondition: The book is not checked out & patron is set to null
     public void ReturnToShelf()
     {
         PatronID = null;
@@ -187,7 +198,7 @@ public class LibraryBook
     public override string ToString()
     {
         string NL = Environment.NewLine; // Newline shortcut
-        string IsYouGotAPatron;
+        string IsYouGotAPatron;     // var for conditional check out status
 
         if (_checkedOut)
         {
