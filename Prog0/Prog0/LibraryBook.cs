@@ -25,8 +25,8 @@ public class LibraryBook
     private bool _checkedOut;   // The book's checked out status
     private LibraryPatron _patronName;  // The books's Patron Name
     private LibraryPatron _patronID;    // The book's Patron ID
-    public  LibraryPatron _patron { get; }  // ????
-    
+    public LibraryPatron _patron { get; }  // ????
+
     // Precondition:  theCopyrightYear >= 0
     // Postcondition: The library book has been initialized with the specified
     //                values for title, author, publisher, copyright year, and
@@ -43,11 +43,11 @@ public class LibraryBook
         PatronName = patronName;
         PatronID = patronID;
 
-        
+
         ReturnToShelf(); // Make sure book is not checked out
     }
-    
-    public LibraryPatron PatronName 
+
+    public LibraryPatron PatronName
     {
         // Precondition:  None
         // Postcondition: The Patron Name has been returned
@@ -61,7 +61,7 @@ public class LibraryBook
             _patronName = value;
         }
     }
-    
+
     public LibraryPatron PatronID
     {
         // Precondition:  None
@@ -148,7 +148,7 @@ public class LibraryBook
             if (value >= 0)
                 _copyrightYear = value;
             else
-               throw new ArgumentOutOfRangeException(nameof(value), value, $"{nameof(CopyrightYear)}, Please Enter A Copyright Year");
+                throw new ArgumentOutOfRangeException(nameof(value), value, $"{nameof(CopyrightYear)}, Please Enter A Copyright Year");
         }
     }
 
@@ -173,7 +173,7 @@ public class LibraryBook
         }
     }
 
-    
+
     // Precondition:  None
     // Postcondition: The book is checked out
     public void CheckOut(LibraryPatron patronID) // ?????
@@ -195,7 +195,7 @@ public class LibraryBook
     //                otherwise false is returned
     public bool IsCheckedOut()
     {
-                
+
         return _checkedOut;
     }
 
@@ -221,6 +221,6 @@ public class LibraryBook
             $"Copyright: {CopyrightYear}{NL}" +
             $"Call Number: {CallNumber}{NL}" +
             $"{IsYouGotAPatron}";
-          
+
     }
 }

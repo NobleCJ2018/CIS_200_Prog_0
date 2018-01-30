@@ -17,7 +17,7 @@ public class Program
     // Postcondition: The LibraryBook class has been tested
     public static void Main(string[] args)
     {
-        
+
         LibraryBook book1 = new LibraryBook("The Wright Guide to C#", "Andrew Wright", "UofL Press",
             2010, "ZZ25 3G", null, null);  // 1st test book
         LibraryBook book2 = new LibraryBook("Harriet Pooter", "IP Thief", "Stealer Books",
@@ -62,7 +62,7 @@ public class Program
         WriteLine("After changes");
         WriteLine("-------------");
         PrintBooks(theBooks);
-        
+
 
         Pause();
 
@@ -80,7 +80,7 @@ public class Program
     // Postcondition: The books have been printed to the console
     public static void PrintBooks(List<LibraryBook> theBooks)
     {
-        foreach (LibraryBook b in theBooks )
+        foreach (LibraryBook b in theBooks)
         {
             Console.WriteLine(b);
             Console.WriteLine();
