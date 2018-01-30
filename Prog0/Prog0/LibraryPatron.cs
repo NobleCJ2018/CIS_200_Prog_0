@@ -1,6 +1,4 @@
 ﻿// Program 0
-// Starting Point
-
 // File: LibraryPatron.cs
 // This file creates a simple LibraryPatron class capable of tracking
 // the patron's name and ID.

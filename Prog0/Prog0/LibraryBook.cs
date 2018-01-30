@@ -1,7 +1,5 @@
 ﻿// Program 4
-// CIS 199-01/-75
-// Due: 12/5/2017
-// By: Andrew L. Wright
+
 
 // File: LibraryBook.cs
 // This file creates a simple LibraryBook class capable of tracking
@@ -27,6 +25,7 @@ public class LibraryBook
     private bool _checkedOut;   // The book's checked out status
     private LibraryPatron _patronName;  // The books's Patron Name
     private LibraryPatron _patronID;    // The book's Patron ID
+    public  LibraryPatron _patron { get; }  // ????
     
     // Precondition:  theCopyrightYear >= 0
     // Postcondition: The library book has been initialized with the specified
@@ -43,6 +42,7 @@ public class LibraryBook
         CallNumber = theCallNumber;
         PatronName = patronName;
         PatronID = patronID;
+
         
         ReturnToShelf(); // Make sure book is not checked out
     }

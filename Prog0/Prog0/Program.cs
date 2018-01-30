@@ -1,6 +1,4 @@
 ﻿// Program 0
-// Starting Point
-
 // File: Program.cs
 // This file creates a simple test application class that creates
 // an array of LibraryBook objects and tests them.
@@ -19,6 +17,7 @@ public class Program
     // Postcondition: The LibraryBook class has been tested
     public static void Main(string[] args)
     {
+        
         LibraryBook book1 = new LibraryBook("The Wright Guide to C#", "Andrew Wright", "UofL Press",
             2010, "ZZ25 3G", null, null);  // 1st test book
         LibraryBook book2 = new LibraryBook("Harriet Pooter", "IP Thief", "Stealer Books",
@@ -30,7 +29,16 @@ public class Program
         LibraryBook book5 = new LibraryBook("The Big Book of Doughnuts", "Homer Simpson", "Doh Books",
             2001, "AE842 7A", null, null); // 5th test book
 
-        LibraryBook[] theBooks = { book1, book2, book3, book4, book5 }; // Test array of books
+
+        //    LibraryBook[] theBooks = { book1, book2, book3, book4, book5 }; // Test array of books
+
+        var theBooks = new List<LibraryBook>();
+        theBooks.Add(book1);
+        theBooks.Add(book2);
+        theBooks.Add(book3);
+        theBooks.Add(book4);
+        theBooks.Add(book5);
+
 
         LibraryPatron patron1 = new LibraryPatron("The Mittani", "GSF001"); // Patron 1
         LibraryPatron patron2 = new LibraryPatron("Asher Elias", "GSF024"); // Patron 2
@@ -70,9 +78,9 @@ public class Program
 
     // Precondition:  None
     // Postcondition: The books have been printed to the console
-    public static void PrintBooks(LibraryBook[] books)
+    public static void PrintBooks(List<LibraryBook> theBooks)
     {
-        foreach (LibraryBook b in books)
+        foreach (LibraryBook b in theBooks )
         {
             Console.WriteLine(b);
             Console.WriteLine();
