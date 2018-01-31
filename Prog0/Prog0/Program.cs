@@ -9,6 +9,9 @@ Section********: CIS 200 01
 // This file creates a simple test application class that creates
 // an array of LibraryBook objects and tests them.
 
+
+// Life is a circle...... so why not code that bois
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
